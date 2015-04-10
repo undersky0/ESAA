@@ -1,0 +1,22 @@
+<%= form_tag articles_path, method: :get do %>
+    <p>
+      <%= text_field_tag :q, params[:q] %>
+      <%= submit_tag "Search", name: nil %>
+    </p>
+<% end %>
+
+<% if @articles.nil? %>
+    No articles found
+    <%else%>
+        <% @articles.each do |article|%>
+        <%=article.type%><br>
+            <%=article.title%><br>
+                <%=article.content%><br>
+
+            <% if article.try(:highlight).try(:content) %>
+                <% article.highlight.text.each do |snippet| %>
+                    <p><%= snippet.html_safe %>...</p>
+                <% end %>
+            <% end %>
+        <%end%>
+<%end%>
