@@ -1,3 +1,7 @@
 class Book < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :author
+  has_many :chapters
+
+  include BookSearch
+
 end

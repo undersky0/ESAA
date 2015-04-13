@@ -25,4 +25,43 @@
 
   person.articles = articles
   person.save
+end
+
+(1..10).each do
+  author = Author.create({
+                             firstname: Faker::Name.name,
+                             lastname:  Faker::Name.first_name,
+                             age:       Random.rand(1..100)
+                         })
+  book = (1..10).map do
+    Book.create({
+                       title:        Faker::Name.title,
+                       book_type:    Faker::Lorem.word,
+                       fiction:      rand(2) == 1 ? true : false,
+                       published_at: Faker::Date.between(1000.days.ago, Date.today),
+                       price:        Random.rand(1..1000),
+                   })
   end
+  chapter = (1..10).map do
+    Chapter.create({
+                    title:        Faker::Name.title,
+                    description:  Faker::Hacker.say_something_smart,
+                    content: Faker::Lorem.sentences(6),
+                })
+  end
+
+
+  author.books = book
+  b = Book.last
+  b.chapters = chapter
+
+  author.save
+  b.save
+end
+10.times do
+  Book.last.chapters.create({
+                                title:        Faker::Name.title,
+                                description:  Faker::Hacker.say_something_smart,
+                                content: Faker::Lorem.sentences(6),
+                            })
+end

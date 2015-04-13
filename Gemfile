@@ -40,6 +40,7 @@ group :test do
   gem "launchy"
   gem "selenium-webdriver"
   gem "fakeweb"
+  gem 'elasticsearch-extensions'
 end
 
 #===========================custom start===========================

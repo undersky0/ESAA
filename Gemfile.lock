@@ -81,6 +81,9 @@ GEM
       elasticsearch-transport (= 1.0.7)
     elasticsearch-api (1.0.7)
       multi_json
+    elasticsearch-extensions (0.0.18)
+      ansi
+      ruby-prof
     elasticsearch-transport (1.0.7)
       faraday
       multi_json
@@ -218,6 +221,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    ruby-prof (0.15.6)
     rubyzip (1.1.7)
     sass (3.4.13)
     sass-rails (5.0.3)
@@ -282,6 +286,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
+  elasticsearch-extensions
   elasticsearch-model!
   elasticsearch-rails!
   factory_girl_rails

@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :book do
     title "MyString"
-description "MyString"
-content "MyText"
-person_id 1
+book_type "MyString"
+fiction false
+price 1.5
+chapter_count 1
+author_id 1
   end
 
 end

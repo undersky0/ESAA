@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ resources :chapters, only: [:index]
+
   resources :books
   get 'search/index'
 

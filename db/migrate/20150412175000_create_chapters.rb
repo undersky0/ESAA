@@ -1,10 +1,10 @@
-class CreateBooks < ActiveRecord::Migration
+class CreateChapters < ActiveRecord::Migration
   def change
-    create_table :books do |t|
+    create_table :chapters do |t|
       t.string :title
       t.string :description
       t.text :content
-      t.integer :person_id
+      t.integer :book_id
 
       t.timestamps null: false
     end
