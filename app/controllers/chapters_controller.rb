@@ -1,6 +1,6 @@
 class ChaptersController < ApplicationController
   def index
-    @chapters = Chapter.search(params)
+    @chapters = Chapter.search(params).page(params[:page]).records
   end
 
   private

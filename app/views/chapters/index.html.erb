@@ -31,18 +31,37 @@
   </thead>
 
   <tbody>
-  <% @chapters.each do |c| %>
+  <% @chapters.results.each do |c| %>
       <tr>
         <td><%= c.title %></td>
         <td><%= c.description %></td>
         <td><%= c.content %></td>
         <td><%= c.updated_at %></td>
-        <td><%= @chapters.first.inspect %></td>
+        <td><%= c.inspect %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
 <br>
-  </div>
+    <%= paginate @chapters  %>
+
 </div>
+  <div class="col-md-4">
+  <% @chapters.response.response.facets.each do |facet,facet_data| %>
+      <div class='form-group'>
+        <label><%= ActiveSupport::Inflector.humanize(facet) %></label>
+        <select class='form-control facet_select' size='5' name="search[<%= facet %>][]" multiple>
+          <% facet_data.terms.each do |f| %>
+              <% selected = (params[:search].present? && params[:search][facet].present? && params[:search][facet].include?(f[:term].to_s)) ? true : false %>
+              <option data-selected="<%= selected %>" value="<%= f[:term] %>" <%= selected ? "selected" : "" %> >
+                <%= f[:term] %>
+                (<%= f[:count] %>)
+              </option>
+          <% end %>
+        </select>
+      </div>
+  <% end %>
+    </div>
+</div>
+

@@ -4,6 +4,8 @@ class Chapter < ActiveRecord::Base
   include Elasticsearch::Model
   #include Elasticsearch::Model::Callbacks
   include Elasticsearch::Model::Indexing
+
+  include ElasticAfter
   #It’s important to namespace the index somehow so that your environments don’t clash. We used this.
   index_name [Rails.env, model_name.collection.gsub(/\//, '-')].join('_')
 
@@ -35,11 +37,12 @@ class Chapter < ActiveRecord::Base
   end
 
   # return array of model attributes to facet
-  def search_facet_fields
+  def self.search_facet_fields
     self.content_columns.select {|c| [:boolean,:decimal,:float,:integer,:string,:text].include?(c.type) }.map {|c| c.name }
   end
 
   def self.search(params)
+    options ||= {}
     @search_definition = {
         query: {},
         filter: {},
@@ -47,6 +50,22 @@ class Chapter < ActiveRecord::Base
         highlight: { pre_tags: ['<strong>'],
                      post_tags: ['</strong>'],fields: { title: {}, content: {} } }
     }
+    __set_filters = lambda do |key, f|
+
+      @search_definition[:filter][:and] ||= []
+      @search_definition[:filter][:and]  |= [f]
+
+      @search_definition[:facets][key.to_sym][:facet_filter][:and] ||= []
+      @search_definition[:facets][key.to_sym][:facet_filter][:and]  |= [f]
+    end
+    @search_definition[:facets] = search_facet_fields.each_with_object({}) do |a,hsh|
+      hsh[a.to_sym] = {
+          terms: {
+              field: a
+          },
+         facet_filter: {}
+      }
+      end
 
     unless params[:q].blank?
 
@@ -64,6 +83,16 @@ class Chapter < ActiveRecord::Base
           }
       }
     else
+      options.each do |key,value|
+        next unless search_facet_fields.include?(key)
+
+        f = { term: { key.to_sym => value } }
+
+        __set_filters.(key, f)
+
+      end
+
+
       @search_definition[:query] =  { match_all: { } }
     end
 
@@ -75,7 +104,7 @@ class Chapter < ActiveRecord::Base
   Chapter.__elasticsearch__.client.indices.delete index: Chapter.index_name rescue nil
   #
   # # Create the new index with the new mapping
-   #Chapter.__elasticsearch__.client.indices.create index: Chapter.index_name, body: { settings: Chapter.settings.to_hash, mappings: Chapter.mappings.to_hash }
+   Chapter.__elasticsearch__.client.indices.create index: Chapter.index_name, body: { settings: Chapter.settings.to_hash, mappings: Chapter.mappings.to_hash }
   #
   # # Index all article records from the DB to Elasticsearch
    Chapter.import

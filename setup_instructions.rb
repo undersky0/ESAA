@@ -24,3 +24,4 @@ password: password
 
 elastic search start:
     elasticsearch --config=/usr/local/opt/elasticsearch/config/elasticsearch.yml
+    elasticsearch --config=/usr/local/var/elasticsearch_1a/config/elasticsearch.yml
