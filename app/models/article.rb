@@ -1,11 +1,12 @@
 class Article < ActiveRecord::Base
 
   belongs_to :person, touch: true
+  validates_presence_of :title
 
   # include ElasticsearchSearchable
   # require 'elasticsearch/model'
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Indexing
+  # include Elasticsearch::Model
+  # include Elasticsearch::Model::Indexing
 
   settings index: { number_of_shards: 2 } do
     mappings dynamic: 'false' do
@@ -27,6 +28,7 @@ class Article < ActiveRecord::Base
   end
 
   def self.search(params)
+
     @search_definition = {
         query: {},
         filter: {},

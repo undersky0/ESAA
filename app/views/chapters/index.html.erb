@@ -5,63 +5,57 @@
 <h1>Listing Books</h1>
 
 <div class="row">
+  <%= form_tag chapters_path, method: :get do %>
+      <p>
+      <form class="form-inline">
+        <div class="form-group">
+          <%= text_field_tag :q, params[:q], class:"form-control" %>
+        </div>
+        <%= submit_tag "Search", name: nil, class:"btn btn-success" , id: "search_btn"%>
+      </form>
+      </p>
+
+  <br>
   <div class="col-md-8">
-<%= form_tag chapters_path, method: :get do %>
-    <p>
-    <form class="form-inline">
-      <div class="form-group">
-        <%= text_field_tag :q, params[:q], class:"form-control" %>
-      </div>
-      <%= submit_tag "Search", name: nil, class:"btn btn-success" %>
-    </form>
-    </p>
-<% end %>
-<br>
+    <% @chapters.results.each do |c| %>
+        <% if c.type == "book"%>
 
-<table class="table">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>content</th>
-    <th>Updated</th>
-    <th>Inspect</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @chapters.results.each do |c| %>
-      <tr>
-        <td><%= c.title %></td>
-        <td><%= c.description %></td>
-        <td><%= c.content %></td>
-        <td><%= c.updated_at %></td>
-        <td><%= c.inspect %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+        <% elsif c.type == "chapter" %>
+            <!--<div class="bs-callout bs-callout-info">-->
+            <h4><strong><%= c.try(:highlight).try(:title) ? c.highlight.title[0].html_safe : c.title%></strong><div class="pull-right"><%=c.type%></div></h4>
+            <p>Book title: <%=c.try(:highlight).try(:book_title) ? c.highlight.book_title[0].html_safe : c.book_title%> Written by: <%=c.author_name%></p>
+            <p>Description: <%=c.try(:highlight).try(:description) ? c.highlight.description[0].html_safe : c.description%></p>
+            <% if c.try(:highlight).try(:content) %>
+                <% c.highlight.content.each do |snippet| %>
+                        <p><%=snippet.html_safe%></p>
+                   <% end %>
+                <%else%>
+                        <p><%= c.content%></p>
+            <% end %>
+            <p class="pull-right">  Last updated: <%=c.updated_at.to_time.strftime('%b %d, %Y')%> </p>
+            <br>
+            <!--</div>-->
+        <% end %>
+    <%end%>
 
 <br>
-    <%= paginate @chapters  %>
-
 </div>
   <div class="col-md-4">
-  <% @chapters.response.response.facets.each do |facet,facet_data| %>
-      <div class='form-group'>
-        <label><%= ActiveSupport::Inflector.humanize(facet) %></label>
-        <select class='form-control facet_select' size='5' name="search[<%= facet %>][]" multiple>
-          <% facet_data.terms.each do |f| %>
-              <% selected = (params[:search].present? && params[:search][facet].present? && params[:search][facet].include?(f[:term].to_s)) ? true : false %>
-              <option data-selected="<%= selected %>" value="<%= f[:term] %>" <%= selected ? "selected" : "" %> >
-                <%= f[:term] %>
-                (<%= f[:count] %>)
-              </option>
-          <% end %>
-        </select>
-      </div>
+    <% @chapters.response.response.facets.each do |facet,facet_data| %>
+        <div class='form-group'>
+          <label><%= ActiveSupport::Inflector.humanize(facet) %></label>
+          <select class='form-control facet_select' size='5' name="search[<%= facet %>][]" multiple>
+            <% facet_data.terms.each do |f| %>
+                <% selected = (params[:q].present? && params[:q][facet].present? && params[:q][facet].include?(f[:term].to_s)) ? true : false %>
+                <option data-selected="<%= selected %>" value="<%= f[:term] %>" <%= selected ? "selected" : "" %> >
+                  <%= f[:term] %>
+                  (<%= f[:count] %>)
+                </option>
+            <% end %>
+          </select>
+        </div>
+    <% end %>
   <% end %>
-    </div>
+  </div>
 </div>
 

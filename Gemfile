@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+gem 'addressable'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
@@ -30,6 +30,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'random-word', '~> 1.3.0'
   gem "faker"
+  gem 'pry'
 end
 group :test do
   gem "rspec"
@@ -53,4 +54,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'tire'
+#debugging
+# gem 'ruby-debug-base', '>= 0.10.5.rc10'
+# gem 'ruby-debug-ide', '>= 0.4.23.beta10'
 #===========================custom end=============================

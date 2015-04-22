@@ -1,6 +1,8 @@
 class ChaptersController < ApplicationController
   def index
-    @chapters = Chapter.search(params).page(params[:page]).records
+    fields = [:title, :description, :content ]
+    tables = [Chapter.index_name, Book.index_name]
+    @chapters = Chapter.search(params).per(10).page(params[:page]).records
   end
 
   private
