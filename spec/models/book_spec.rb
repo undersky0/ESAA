@@ -1,30 +1,25 @@
 require 'rails_helper'
+require 'spec_helper'
+
+
+
 
 RSpec.describe Book, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  include Docsplit
 
+      before(:all) do
 
-  describe 'book search', elasticsearch: true do
-    before do
-      # Create and destroy Elasticsearch indexes
-      # between tests to eliminate test pollution
-      Book.__elasticsearch__.create_index! index: Book.index_name
+        @pdf_file = Rika::Parser.new(file_path("/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf"))
+      end
 
-      # There are two options for how you create your objects
-      # 1. Create your objects here and they should be synchronised
-      # through the Elasticsearch::Model callbacks
-      Book.create!
-      # 2. Call import on the model which should reindex
-      # anything you've "let!"
-      Book.import
-
-      # Sleeping here to allow Elasticsearch test cluster
-      # to index the objects we created
-      sleep 1
+    describe "testing alchemy API" do
+      @file_path = "/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf"
+      puts @pdf_file
+      @title = Docsplit.extract_title("/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf")
+      puts @title
+      @length = Docsplit.extract_length("/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf")
+      puts @length
+      @pages = Docsplit.extract_from_pdf(@file_path, :pages => 1)
+      puts @pages
     end
-
-    after do
-      Book.__elasticsearch__.client.indices.delete index: Book.index_name
-    end
-  end
 end

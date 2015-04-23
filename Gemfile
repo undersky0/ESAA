@@ -57,4 +57,16 @@ gem 'tire'
 #debugging
 # gem 'ruby-debug-base', '>= 0.10.5.rc10'
 # gem 'ruby-debug-ide', '>= 0.4.23.beta10'
+#Alchemy API
+gem 'alchemy-api-rb', :require => 'alchemy_api'
+#keys
+gem 'figaro'
+#uploading
+gem 'carrierwave'
+#pdf parsing
+gem "pdftk"
+gem "docsplit"
+gem "glib2"
+gem "gdk_pixbuf2"
+gem "poppler"
 #===========================custom end=============================

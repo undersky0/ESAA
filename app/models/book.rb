@@ -5,6 +5,7 @@ class Book < ActiveRecord::Base
   #include BookSearch
   include ElasticAfter
   include Elasticsearch::Model
+  mount_uploader :attachment, AttachmentUploader
   # include Elasticsearch::Model::Callbacks
   # include Elasticsearch::Model::Indexing
 
@@ -25,7 +26,7 @@ class Book < ActiveRecord::Base
       indexes :updated_at, type: :date # Date example
   end
   def author_name
-    " #{book.author.firstname} #{book.author.lastname} "
+    " #{book.author.firstname} #{book.author.lastname} " if author.present?
   end
   def as_indexed_json(options = {})
     as_json methods: [:author_name]
