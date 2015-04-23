@@ -13,13 +13,13 @@ RSpec.describe Book, type: :model do
       end
 
     describe "testing alchemy API" do
-      @file_path = "/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf"
+      @file_path = Rails.root + "public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf"
       puts @pdf_file
-      @title = Docsplit.extract_title("/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf")
+      @title = Docsplit.extract_title(@file_path)
       puts @title
-      @length = Docsplit.extract_length("/Users/mac/RubymineProjects/ESAA/public/uploads/book/attachment/211/Richard_DLonesteen_CV.pdf")
+      @length = Docsplit.extract_length(@file_path)
       puts @length
-      @pages = Docsplit.extract_from_pdf(@file_path, :pages => 1)
-      puts @pages
+      # @pages = Docsplit.contains_text?(@file_path)
+      # puts @pages
     end
 end
