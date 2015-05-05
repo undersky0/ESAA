@@ -1,0 +1,22 @@
+The Dropbox Tray/Menu bar icon
+The Dropbox tray or menu bar icon is located on the bottom (Windows) or top (Mac/Linux) of your
+screen, and lets you check the status and settings of your Dropbox. The same green, blue, and red icons
+that appear on the ﬁles and folders in your Dropbox also appear over this icon to let you know the sta-
+tus of your Dropbox.
+
+
+Right-clicking this icon gives you a few options:
+•	   Open your Dropbox folder, the Dropbox website, or the Dropbox help center.
+•	   See which ﬁles were recently changed.
+•	   View an estimate of how long it will take Dropbox to finish updating files.
+•	   Change preferences for your connection, Dropbox folder location, and more.
+
+
+What do I do now?
+Try dragging some photos or docs into your Dropbox. Then visit the Dropbox website at
+https://www.dropbox.com. When you log in, your files will be waiting for you!
+
+
+To learn more about Dropbox, take our tour at http://www.dropbox.com/tour or visit the help center at
+http://www.dropbox.com/help.
+

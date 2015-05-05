@@ -1,0 +1,27 @@
+Dropbox Quick Start
+
+
+What is Dropbox?
+Dropbox is a free service that lets you bring all your photos, docs, and videos anywhere. Any file you
+save to your Dropbox will also automatically save to all your computers, phones, and even the Dropbox
+website. This means that you can start working on your computer at school or the office, and finish on
+your home computer. Never email yourself a file again!
+
+
+
+
+The Dropbox Folder
+After you install Dropbox on your computer, a Dropbox folder is created. If you’re reading this guide,
+then that means you had no problems finding your Dropbox folder :). This folder is just like any other
+folder on your computer, but with a twist. Any file you save to your Dropbox folder is also saved to all
+your other computers, phones, and the Dropbox website.
+
+
+On top of your Dropbox is a green icon that lets you know how your Dropbox is doing:
+
+
+	         Green circle and check: All the files in your Dropbox are up to date.
+
+
+	         Blue circle and arrows: Files in your Dropbox are currently being updated.
+

@@ -1,0 +1,36 @@
+Frequently Asked Questions
+
+How much does Dropbox cost?
+Dropbox is free! If you run out of space, visit https://www.dropbox.com/plans to view our available sub-
+scriptions.
+
+
+How much space does my Dropbox have?
+Free accounts come with 2GB of space (deleted ﬁles and revisions won’t count against your limit). You
+can always check your usage by visiting your account settings page at https://www.dropbox.com/ac-
+count.
+
+
+How long until my ﬁles are fully synced?
+Dropbox will download as fast or as slow as your network allows, and will try its best to not hog your
+connection. If you’d like to limit your upload or download rates, you can change them in Dropbox’s pref-
+erences. For step by step instructions, visit the help article at https://www.dropbox.com/help/26.
+
+
+Dropbox is fast! How could it have possibly synced all of my ﬁles in that time?
+Dropbox will look to see if it already has the ﬁle you’re trying to upload. If it senses that it already has the
+file, it won’t bother to upload it again. If the ﬁle has been changed recently, it will only upload/download
+the changes rather than the whole thing.
+
+
+How secure is Dropbox?
+Dropbox takes the security of your files and of our software very seriously. Dropbox uses Secure Socket
+Layer (SSL) and AES-256 encryption. AES-256 is the same encryption standard used by banks to secure
+customer data.
+
+
+Can I access Dropbox on my mobile device?
+The Dropbox App is available for iPhone, iPad, Android, and Blackberry. To install Dropbox on your
+mobile device, visit http://www.dropbox.com/mobile. You can also get to your Dropbox at any time by
+visiting http://www.dropbox.com from your phone.
+

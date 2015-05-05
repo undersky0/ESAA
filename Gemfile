@@ -65,7 +65,7 @@ gem 'figaro'
 gem 'carrierwave'
 #pdf parsing
 gem "pdftk"
-gem "docsplit"
+gem "docsplit", git: 'git://github.com/narutosanjiv/docsplit.git'
 gem "glib2"
 gem "gdk_pixbuf2"
 gem "poppler"

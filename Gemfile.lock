@@ -8,6 +8,12 @@ GIT
       hashie
     elasticsearch-rails (0.1.7)
 
+GIT
+  remote: git://github.com/narutosanjiv/docsplit.git
+  revision: ec3f0ed32a7bad0969444ed9a1129bb2886fb268
+  specs:
+    docsplit (0.7.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,7 +92,6 @@ GEM
     coffee-script-source (1.9.1)
     database_cleaner (1.4.1)
     diff-lcs (1.2.5)
-    docsplit (0.7.6)
     elasticsearch (1.0.8)
       elasticsearch-api (= 1.0.7)
       elasticsearch-transport (= 1.0.7)
@@ -316,7 +321,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   database_cleaner
-  docsplit
+  docsplit!
   elasticsearch-extensions
   elasticsearch-model!
   elasticsearch-rails!
